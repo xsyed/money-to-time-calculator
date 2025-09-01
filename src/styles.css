@@ -84,7 +84,10 @@ input[type="number"]{appearance:none;border:1px solid rgba(0,0,0,0.08);padding:1
 .purchase-row input{flex:1}
 .result{margin-top:12px;font-size:16px;padding:10px;border-radius:8px;background:var(--result-bg);color:var(--text)}
 .result strong{font-size:18px;line-height:1}
-.footer{text-align:center;color:var(--muted-2);font-size:13px;margin-top:6px}
+.footer{text-align:center;color:var(--muted-2);font-size:13px;margin-top:20px;padding-top:10px;border-top:1px solid rgba(107,114,128,0.1);}
+.footer a{color:var(--accent-pink);text-decoration:none;transition:color 0.2s ease;}
+.footer a:hover{color:var(--primary-green);text-decoration:underline;}
+.footer p{margin:0;}
 
 /* Mobile reachability improvements
    - Ensure interactive controls near the bottom are reachable by thumbs
@@ -124,8 +127,13 @@ input[type="number"]{appearance:none;border:1px solid rgba(0,0,0,0.08);padding:1
   /* Ensure result text is visible inside sticky card */
   .result{margin-top:8px}
 
-  /* Slightly hide footer since sticky bar covers bottom; keep it visible above */
-  .footer{margin-bottom: calc(env(safe-area-inset-bottom, 16px) + 72px)}
+  /* Adjust footer for mobile */
+  .footer{
+    margin-top:15px;
+    margin-bottom:0;
+    padding-top:10px;
+    font-size:12px;
+  }
 }
 
 /* Dark-mode outlines: prefer the explicit theme class first, fall back to OS preference */
