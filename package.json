@@ -1,0 +1,10 @@
+{
+  "name": "money-to-time-calculator",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Client-side Money to Time Calculator",
+  "scripts": {
+    "start": "npx serve -s . -l 5000"
+  },
+  "license": "MIT"
+}
