@@ -153,12 +153,19 @@
       remaining -= days * DAY
     }
 
-    // For sub-day remainder, show only hours (round up if there's a fraction)
+    // For sub-day remainder, show hours/minutes/seconds as appropriate
+    if (remaining >= 1){
+      const hrs = Math.floor(remaining)
+      parts.push(hrs + 'h')
+      remaining -= hrs
+    }
+
     if (remaining > 0){
-      // Round up to nearest hour
-      const hrs = Math.ceil(remaining)
-      if (hrs > 0) {
-        parts.push(hrs + 'h')
+      const minutesValue = remaining * 60
+      const minutes = Math.floor(minutesValue)
+      if (minutes) {
+        parts.push(minutes + 'm')
+        remaining = (minutesValue - minutes) / 60
       }
     }
 
