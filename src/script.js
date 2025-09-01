@@ -23,7 +23,42 @@
   // Helpers
   function moneyFmt(n){
     if (n == null || isNaN(n)) return '—'
-    return n.toLocaleString(undefined,{style:'currency',currency:'USD',maximumFractionDigits:2})
+    try {
+      // Get the user's locale
+      const locale = navigator.language || 'en-US';
+      
+      // We'll use a map of common locales to currencies
+      const localeCurrencyMap = {
+        'en-US': 'USD',
+        'en-GB': 'GBP',
+        'en-CA': 'CAD',
+        'fr-CA': 'CAD', // French Canada - Canadian Dollar
+        'en-AU': 'AUD',
+        'en-NZ': 'NZD',
+        'ja-JP': 'JPY',
+        'zh-CN': 'CNY',
+        'de-DE': 'EUR',
+        'fr-FR': 'EUR',
+        'it-IT': 'EUR',
+        'es-ES': 'EUR',
+        // Middle East and South Asia
+        'ar-SA': 'SAR', // Saudi Arabia - Saudi Riyal
+        'ar-AE': 'AED', // UAE - UAE Dirham
+        'hi-IN': 'INR', // India - Indian Rupee
+        'en-IN': 'INR', // India (English) - Indian Rupee
+        'ur-PK': 'PKR', // Pakistan - Pakistani Rupee
+        'bn-BD': 'BDT'  // Bangladesh - Bangladeshi Taka
+        // Add more mappings as needed
+      };
+      
+      // Get currency from map or default to USD
+      const localCurrency = localeCurrencyMap[locale] || 'USD';
+      
+      return n.toLocaleString(locale, {style:'currency', currency: localCurrency, maximumFractionDigits:2})
+    } catch (e) {
+      // Fallback to USD if there's any error
+      return n.toLocaleString(undefined, {style:'currency', currency:'USD', maximumFractionDigits:2})
+    }
   }
 
   function loadAnnual(){
